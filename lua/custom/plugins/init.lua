@@ -19,3 +19,5 @@
 require 'custom.plugins.latex_plugin'
 
 require 'custom.plugins.markdown_plugin'
+
+require 'custom.plugins.puml_plugin'

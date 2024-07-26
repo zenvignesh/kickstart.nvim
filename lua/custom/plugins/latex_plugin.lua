@@ -3,6 +3,7 @@ local function compile_latex()
 
   local filename = vim.fn.expand '%'
   local filepath = vim.fn.expand '%:p:h'
+  print(filepath)
 
   os.execute('pdflatex -interaction=nonstopmode -output-directory=' .. vim.fn.shellescape(filepath) .. ' ' .. filename .. ' > /dev/null 2>&1')
 
