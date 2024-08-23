@@ -21,7 +21,34 @@ local function compile_latex()
   print 'LaTeX file compiled!'
 end
 
+-- Function to check if a file is an entry LaTeX document
+local function is_entry_document()
+  local lines = vim.api.nvim_buf_get_lines(0, 0, -1, false)
+  for _, line in ipairs(lines) do
+    if string.match(line, '\\documentclass') then
+      return true
+    end
+  end
+  return false
+end
+
+-- Function to determine the compiler (pdflatex or lualatex)
+local function determine_compiler(filepath)
+  local lines = vim.fn.readfile(filepath)
+  for _, line in ipairs(lines) do
+    if string.match(line, '%%! TEX program = lualatex') then
+      return 'lualatex'
+    end
+  end
+  return 'pdflatex'
+end
+
 vim.api.nvim_create_autocmd('BufWritePost', {
   pattern = '*.tex',
-  callback = compile_latex,
+  callback = function()
+    if is_entry_document() then
+      -- compile_latex()
+    else
+    end
+  end,
 })

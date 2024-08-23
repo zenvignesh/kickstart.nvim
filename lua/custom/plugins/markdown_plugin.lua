@@ -79,6 +79,20 @@ local function process_selection()
 
   vim.cmd 'write' -- save the file
   vim.cmd('edit ' .. filename)
+
+  local buf = vim.api.nvim_get_current_buf()
+
+  local content = {
+    '# ' .. selected_text,
+    ' ',
+    ' ',
+  }
+  vim.api.nvim_buf_set_lines(buf, 0, -1, false, content)
+
+  vim.cmd 'write' -- save the file
+
+  -- Move the cursor to the 3rd line, 1st column (line number is 1-based)
+  vim.api.nvim_win_set_cursor(0, { 3, 0 })
 end
 
 vim.api.nvim_create_user_command('MarkDownLink', function()
@@ -116,3 +130,5 @@ vim.api.nvim_create_user_command('MarkDownHyperLink', function()
 end, { nargs = 0, range = true })
 
 vim.api.nvim_set_keymap('v', '<C-h>', '<Esc>:MarkDownHyperLink<CR>', { noremap = true, silent = true })
+
+vim.api.nvim_set_keymap('n', '<F5>', '<Esc>:silent !firefox %<CR>', { noremap = true, silent = true })
