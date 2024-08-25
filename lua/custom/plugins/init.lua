@@ -151,7 +151,6 @@ require 'custom.plugins.llm_plugin'
 require 'custom.plugins.git_plugin'
 
 require 'custom.plugins.util_plugin'
-=======
 -- Consider moving this function into separate file
 
 function Generate_unique_filename(description)
