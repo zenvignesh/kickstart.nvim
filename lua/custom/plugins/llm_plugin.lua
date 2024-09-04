@@ -29,6 +29,9 @@ local function get_llm_result(text)
   local result = handle:read '*a'
   handle:close()
 
+  -- Remove the last two characters from the result
+  result = result:sub(1, -3)
+
   return result
 end
 
@@ -41,9 +44,6 @@ local function set_the_result_in_vim_buffer(result)
 
   local start_pos = vim.fn.getpos "'<"
   local end_pos = vim.fn.getpos "'>"
-
-  -- Remove the last two characters from the result
-  result = result:sub(1, -3)
 
   -- Replace the selected test with the result
   vim.api.nvim_buf_set_text(0, start_pos[2] - 1, start_pos[3] - 1, end_pos[2] - 1, end_pos[3], result_lines)

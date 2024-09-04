@@ -19,6 +19,16 @@
 -- Define a keymap to build files in the current working directory
 vim.api.nvim_set_keymap('n', '<leader>b', ':!./make.sh<CR>', { noremap = true, silent = true })
 
+function InsertTimeStamp()
+  -- Get the current timestamp
+  local timestamp = os.date '%Y-%m-%d %H:%M:%S'
+
+  -- Insert the timestamp at the cursor position
+  vim.api.nvim_put({ timestamp }, 'c', true, true)
+end
+-- Map <leader>d to insert the current timestamp
+vim.api.nvim_set_keymap('n', '<leader>d', ':lua InsertTimeStamp()<CR>', { noremap = true, silent = true })
+
 require 'custom.plugins.latex_plugin'
 
 require 'custom.plugins.markdown_plugin'
@@ -26,3 +36,5 @@ require 'custom.plugins.markdown_plugin'
 require 'custom.plugins.puml_plugin'
 
 require 'custom.plugins.llm_plugin'
+
+require 'custom.plugins.git_plugin'
