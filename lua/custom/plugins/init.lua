@@ -16,6 +16,9 @@
 -- vim.keymap.set("n", "<leader>b", Todo)
 -- ==================================================================
 
+-- Define a keymap to build files in the current working directory
+vim.api.nvim_set_keymap('n', '<leader>b', ':!./make.sh<CR>', { noremap = true, silent = true })
+
 require 'custom.plugins.latex_plugin'
 
 require 'custom.plugins.markdown_plugin'
