@@ -35,18 +35,19 @@ local function get_llm_result(text)
   return result
 end
 
-local function set_the_result_in_vim_buffer(result)
-  -- Split the result into lines for proper replacement
-  local result_lines = {}
-  for line in result:gmatch '([^\n]*)\n?' do
-    table.insert(result_lines, line)
-  end
-
+local function get_visual_selection_range()
   local start_pos = vim.fn.getpos "'<"
   local end_pos = vim.fn.getpos "'>"
+  local start_line = start_pos[2] -- Start line number
+  local end_line = end_pos[2] -- End line number
+  return start_line, end_line
+end
 
-  -- Replace the selected test with the result
-  vim.api.nvim_buf_set_text(0, start_pos[2] - 1, start_pos[3] - 1, end_pos[2] - 1, end_pos[3], result_lines)
+local function set_the_result_in_vim_buffer(result)
+  local start_line, end_line = get_visual_selection_range()
+
+  -- Insert the result after the visual selection
+  vim.api.nvim_buf_set_lines(0, end_line, end_line, false, { result })
 end
 
 function Run_ollama()
