@@ -29,6 +29,38 @@ end
 -- Map <leader>d to insert the current timestamp
 vim.api.nvim_set_keymap('n', '<leader>d', ':lua InsertTimeStamp()<CR>', { noremap = true, silent = true })
 
+function RenameFile()
+  local old_name = vim.fn.expand '%:p'
+  local new_name = old_name:gsub(' ', '_')
+
+  if old_name == new_name then
+    print 'No spaces in the file name.'
+    return
+  end
+
+  -- Rename the file
+  local success, err = os.rename(old_name, new_name)
+  if not success then
+    print('Error renaming file: ' .. err)
+    return
+  end
+
+  -- Reload the buffer
+  vim.cmd('edit ' .. new_name)
+  print('File renamed to : ' .. new_name)
+end
+vim.api.nvim_set_keymap('n', '<leader>rf', ':lua RenameFile()<CR>', { noremap = true, silent = true })
+
+-- Function to open PDF with default system application
+vim.api.nvim_create_autocmd({ 'BufReadPost', 'BufWinEnter' }, {
+  pattern = '*.pdf',
+  callback = function()
+    local file = vim.fn.shellescape(vim.fn.expand '%') -- Escape the file name
+    vim.cmd('silent !xdg-open ' .. file)
+    vim.cmd 'bd!' -- Close buffer after opening the PDF externally
+  end,
+})
+
 require 'custom.plugins.latex_plugin'
 
 require 'custom.plugins.markdown_plugin'
