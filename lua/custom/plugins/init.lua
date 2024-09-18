@@ -17,7 +17,7 @@
 -- ==================================================================
 
 -- Define a keymap to build files in the current working directory
-vim.api.nvim_set_keymap('n', '<leader>b', ':!./make.sh<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>m', ':!make<CR>', { noremap = true, silent = true })
 
 function InsertTimeStamp()
   -- Get the current timestamp
