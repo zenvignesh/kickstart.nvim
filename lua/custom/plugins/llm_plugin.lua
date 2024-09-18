@@ -43,11 +43,22 @@ local function get_visual_selection_range()
   return start_line, end_line
 end
 
+local function split_string_into_lines(str)
+  local lines = {}
+  for line in str:gmatch '[^\r\n]+' do
+    table.insert(lines, line)
+  end
+  return lines
+end
+
 local function set_the_result_in_vim_buffer(result)
   local start_line, end_line = get_visual_selection_range()
 
+  -- Convert multi-line string into table of lines
+  local result_lines = split_string_into_lines(result)
+
   -- Insert the result after the visual selection
-  vim.api.nvim_buf_set_lines(0, end_line, end_line, false, { result })
+  vim.api.nvim_buf_set_lines(0, end_line, end_line, false, result_lines)
 end
 
 function Run_ollama()
