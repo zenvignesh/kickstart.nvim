@@ -70,3 +70,5 @@ require 'custom.plugins.puml_plugin'
 require 'custom.plugins.llm_plugin'
 
 require 'custom.plugins.git_plugin'
+
+require 'custom.plugins.signature_plugin'
