@@ -19,6 +19,9 @@
 -- Define a keymap to build files in the current working directory
 vim.api.nvim_set_keymap('n', '<leader>m', ':!make<CR>', { noremap = true, silent = true })
 
+-- To toggle spell check
+vim.api.nvim_set_keymap('n', '<leader>sp', ':set spell!<CR>', { noremap = true, silent = true })
+
 function InsertTimeStamp()
   -- Get the current timestamp
   local timestamp = os.date '%Y-%m-%d %H:%M:%S'
