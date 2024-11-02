@@ -64,6 +64,16 @@ vim.api.nvim_create_autocmd({ 'BufReadPost', 'BufWinEnter' }, {
   end,
 })
 
+-- Function to open JPG with default system application
+vim.api.nvim_create_autocmd({ 'BufReadPost', 'BufWinEnter' }, {
+  pattern = '*.jpg',
+  callback = function()
+    local file = vim.fn.shellescape(vim.fn.expand '%') -- Escape the file name
+    vim.cmd('silent !xdg-open ' .. file)
+    vim.cmd 'bd!' -- Close buffer after opening the JPG externally
+  end,
+})
+
 require 'custom.plugins.latex_plugin'
 
 require 'custom.plugins.markdown_plugin'
