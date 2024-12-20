@@ -22,6 +22,28 @@ vim.api.nvim_set_keymap('n', '<leader>m', ':!make<CR>', { noremap = true, silent
 -- To toggle spell check
 vim.api.nvim_set_keymap('n', '<leader>sp', ':set spell!<CR>', { noremap = true, silent = true })
 
+-- Key Mappings to navigate the quickfix list
+vim.api.nvim_set_keymap('n', '<C-n>', ':cnext<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<C-p>', ':cprev<CR>', { noremap = true, silent = true })
+
+function ToggleQuickfix()
+  local is_open = false
+  for _, win in ipairs(vim.fn.getwininfo()) do
+    if win.quickfix == 1 then
+      is_open = true
+      break
+    end
+  end
+  if is_open then
+    vim.cmd 'cclose'
+  else
+    vim.cmd 'copen'
+  end
+end
+
+-- Key map to toggle quickfix list
+vim.api.nvim_set_keymap('n', '<leader>tq', ':lua ToggleQuickfix()<CR>', { noremap = true, silent = true })
+
 function InsertTimeStamp()
   -- Get the current timestamp
   local timestamp = os.date '%Y-%m-%d %H:%M:%S'
