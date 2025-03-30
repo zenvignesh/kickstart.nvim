@@ -105,6 +105,16 @@ vim.api.nvim_create_autocmd({ 'BufReadPost', 'BufWinEnter' }, {
   end,
 })
 
+-- Function to open PDF with default system application
+vim.api.nvim_create_autocmd({ 'BufReadPost', 'BufWinEnter' }, {
+  pattern = '*.svg',
+  callback = function()
+    local file = vim.fn.shellescape(vim.fn.expand '%') -- Escape the file name
+    vim.cmd('silent !firefox ' .. file)
+    vim.cmd 'bd!' -- Close buffer after opening the PDF externally
+  end,
+})
+
 require 'custom.plugins.latex_plugin'
 
 require 'custom.plugins.markdown_plugin'
