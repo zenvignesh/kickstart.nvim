@@ -17,7 +17,16 @@
 -- ==================================================================
 
 -- Define a keymap to build files in the current working directory
-vim.api.nvim_set_keymap('n', '<leader>m', ':!make<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>ma', ':!make all<CR>', { noremap = true, silent = true })
+
+-- Define a keymap to build files in the current working directory
+vim.api.nvim_set_keymap('n', '<leader>mc', ':!make clean<CR>', { noremap = true, silent = true })
+
+vim.api.nvim_set_keymap('n', '<leader>mt', ':!make test<CR>', { noremap = true, silent = true })
+
+vim.api.nvim_set_keymap('n', '<leader>md', ':!make debug<CR>', { noremap = true, silent = true })
+
+vim.api.nvim_set_keymap('n', '<leader>mD', ':!make doc<CR>', { noremap = true, silent = true })
 
 -- To toggle spell check
 vim.api.nvim_set_keymap('n', '<leader>sp', ':set spell!<CR>', { noremap = true, silent = true })
