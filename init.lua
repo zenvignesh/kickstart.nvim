@@ -715,6 +715,7 @@ require('lazy').setup({
       formatters_by_ft = {
         lua = { 'stylua' },
         c = { 'clang_format' },
+        cpp = { 'clang_format' },
         -- Conform can also run multiple formatters sequentially
         -- python = { "isort", "black" },
         --
@@ -914,7 +915,7 @@ require('lazy').setup({
       auto_install = true,
       highlight = {
         enable = true,
-        disable = { 'c' },
+        disable = {},
         -- Some languages depend on vim's regex highlighting system (such as Ruby) for indent rules.
         --  If you are experiencing weird indenting issues, add the language to
         --  the list of additional_vim_regex_highlighting and disabled languages for indent.
