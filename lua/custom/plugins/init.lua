@@ -17,10 +17,12 @@
 -- ==================================================================
 
 -- Define a keymap to build files in the current working directory
-vim.api.nvim_set_keymap('n', '<leader>ma', ':!make all<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>ma', ':!tmux split-window -v \'make all;echo "Press Enter to close...";read\'<CR>', { noremap = true, silent = true })
+
+vim.api.nvim_set_keymap('n', '<leader>me', ':!tmux split-window -v \'make execute;echo "Press Enter to close...";read\'<CR>', { noremap = true, silent = true })
 
 -- Define a keymap to build files in the current working directory
-vim.api.nvim_set_keymap('n', '<leader>mc', ':!make clean<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>mc', ':!tmux split-window -v \'make clean;echo "Press Enter to close...";read\'<CR>', { noremap = true, silent = true })
 
 vim.api.nvim_set_keymap('n', '<leader>mt', ':!make test<CR>', { noremap = true, silent = true })
 
@@ -124,5 +126,3 @@ require 'custom.plugins.puml_plugin'
 require 'custom.plugins.llm_plugin'
 
 require 'custom.plugins.git_plugin'
-
-require 'custom.plugins.signature_plugin'
