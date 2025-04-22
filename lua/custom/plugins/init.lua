@@ -16,6 +16,14 @@
 -- vim.keymap.set("n", "<leader>b", Todo)
 -- ==================================================================
 
+-- Buffer related
+vim.api.nvim_set_keymap('n', 'J', ':bnext<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', 'K', ':bprev<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', 'X', ':bd<CR>', { noremap = true, silent = true })
+
+-- Open Nvim Terminal
+vim.api.nvim_set_keymap('n', 'T', ':term<CR>', { noremap = true, silent = true })
+
 -- Define a keymap to build files in the current working directory
 vim.api.nvim_set_keymap('n', '<leader>ma', ':!tmux split-window -v \'make all;echo "Press Enter to close...";read\'<CR>', { noremap = true, silent = true })
 
