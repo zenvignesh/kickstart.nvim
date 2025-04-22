@@ -38,6 +38,21 @@ vim.api.nvim_set_keymap('n', '<leader>md', ':!make debug<CR>', { noremap = true,
 
 vim.api.nvim_set_keymap('n', '<leader>mD', ':!make doc<CR>', { noremap = true, silent = true })
 
+-- open with
+vim.api.nvim_set_keymap('n', '<leader>of', [[:lua OpenInFirefox()<CR>]], { noremap = true, silent = true })
+
+function OpenInFirefox()
+  local filename = vim.fn.expand '%:p'
+  local ext = vim.fn.expand '%:e'
+
+  if ext == 'puml' then
+    filename = filename:gsub('%.puml$', '.svg')
+  end
+
+  -- Run Firefox in the background, suppressing terminal output
+  vim.fn.jobstart({ 'firefox', filename }, { detach = true })
+end
+
 -- To toggle spell check
 vim.api.nvim_set_keymap('n', '<leader>sp', ':set spell!<CR>', { noremap = true, silent = true })
 
