@@ -157,6 +157,12 @@ vim.opt.cursorline = true
 -- Minimal number of screen lines to keep above and below the cursor.
 vim.opt.scrolloff = 10
 
+-- Spelling
+vim.o.spell = true
+vim.o.spelllang = 'en_us' -- or any other language like 'en_gb', 'fr', etc.
+vim.o.completeopt = 'menuone,longest'
+vim.o.complete = vim.o.complete .. ',kspell'
+
 -- [[ Basic Keymaps ]]
 --  See `:help vim.keymap.set()`
 
@@ -756,6 +762,7 @@ require('lazy').setup({
           --     require('luasnip.loaders.from_vscode').lazy_load()
           --   end,
           -- },
+          'f3fora/cmp-spell',
         },
       },
       'saadparwaiz1/cmp_luasnip',
@@ -841,6 +848,7 @@ require('lazy').setup({
           { name = 'nvim_lsp' },
           { name = 'luasnip' },
           { name = 'path' },
+          { name = 'spell' },
         },
       }
     end,
