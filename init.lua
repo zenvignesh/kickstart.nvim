@@ -812,6 +812,23 @@ vim.o.complete = vim.o.complete .. ',kspell'
           },
         }
       end,
+      formatters_by_ft = {
+        lua = { 'stylua' },
+        c = { 'clang_format' },
+        cpp = { 'clang_format' },
+        markdown = { 'prettier' },
+        html = { 'prettier' },
+        -- Conform can also run multiple formatters sequentially
+        -- python = { "isort", "black" },
+        --
+        -- You can use 'stop_after_first' to run the first available formatter from the list
+        -- javascript = { "prettierd", "prettier", stop_after_first = true },
+      },
+      formatters = {
+        clang_format = {
+          prepend_args = { '--style=file:/home/vignesh/.config/nvim/lua/custom/config/.clang-format' },
+        },
+      },
     },
 
     { -- Autoformat
