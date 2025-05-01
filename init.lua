@@ -959,6 +959,7 @@ require('lazy').setup({
   require 'kickstart.plugins.w3m-vim',
   require 'kickstart.plugins.dadbod',
   require 'kickstart.plugins.leetcode',
+  require 'kickstart.plugins.puml-plugin',
 
   -- NOTE: The import below can automatically add your own plugins, configuration, etc from `lua/custom/plugins/*.lua`
   --    This is the easiest way to modularize your config.
