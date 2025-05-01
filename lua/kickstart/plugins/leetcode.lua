@@ -18,5 +18,6 @@ return {
     vim.api.nvim_set_keymap('n', '<leader>lr', ':Leet run<CR>', { noremap = true, silent = true }),
     vim.api.nvim_set_keymap('n', '<leader>ls', ':Leet submit<CR>', { noremap = true, silent = true }),
     vim.api.nvim_set_keymap('n', '<leader>lt', ':Leet tabs<CR>', { noremap = true, silent = true }),
+    vim.api.nvim_set_keymap('n', '<leader>li', ':Leet info<CR>', { noremap = true, silent = true }),
   },
 }
