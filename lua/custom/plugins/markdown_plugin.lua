@@ -90,9 +90,6 @@ local function process_selection()
   vim.api.nvim_buf_set_lines(buf, 0, -1, false, content)
 
   vim.cmd 'write' -- save the file
-
-  -- Move the cursor to the 3rd line, 1st column (line number is 1-based)
-  vim.api.nvim_win_set_cursor(0, { 3, 0 })
 end
 
 vim.api.nvim_create_user_command('MarkDownLink', function()
