@@ -17,8 +17,8 @@
 -- ==================================================================
 
 -- Vim buffer related
-vim.api.nvim_set_keymap('n', '<C-j>', ':bnext<CR>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<C-k>', ':bprev<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<C-M-j>', ':bnext<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<C-M-k>', ':bprev<CR>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<C-q>', ':bd<CR>', { noremap = true, silent = true })
 
 -- Open Nvim Terminal
