@@ -471,7 +471,6 @@ vim.o.complete = vim.o.complete .. ',kspell'
           builtin.find_files { cwd = vim.fn.stdpath 'config' }
         end, { desc = '[S]earch [N]eovim files' })
       end,
-<<<<<<< HEAD
       formatters_by_ft = {
         lua = { 'stylua' },
         c = { 'clang_format' },
@@ -489,11 +488,8 @@ vim.o.complete = vim.o.complete .. ',kspell'
           prepend_args = { '--style=file:/home/vignesh/.config/nvim/lua/custom/config/.clang-format' },
         },
       },
-=======
->>>>>>> c708856 (Spell check)
     },
 
-<<<<<<< HEAD
   { -- Autocompletion
     'saghen/blink.cmp',
     event = 'VimEnter',
@@ -526,12 +522,10 @@ vim.o.complete = vim.o.complete .. ',kspell'
         },
         opts = {},
       },
-=======
     -- LSP Plugins
     {
       -- `lazydev` configures Lua LSP for your Neovim config, runtime and plugins
       -- used for completion, annotations and signatures of Neovim apis
->>>>>>> c708856 (Spell check)
       'folke/lazydev.nvim',
       ft = 'lua',
       opts = {
