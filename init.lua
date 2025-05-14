@@ -721,6 +721,7 @@ require('lazy').setup({
       vim.list_extend(ensure_installed, {
         'stylua', -- Used to format Lua code
         'prettier', -- Used to format markdown file
+        'latexindent', -- Used to format latex file
       })
       require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 
@@ -777,6 +778,7 @@ require('lazy').setup({
         cpp = { 'clang_format' },
         markdown = { 'prettier' },
         html = { 'prettier' },
+        tex = { 'latexindent' },
         -- Conform can also run multiple formatters sequentially
         -- python = { "isort", "black" },
         --
