@@ -1,6 +1,6 @@
 return {
   'kawre/leetcode.nvim',
-  --   build = ':TSUpdate html', -- if you have `nvim-treesitter` installed
+  build = ':TSUpdate html', -- if you have `nvim-treesitter` installed
   dependencies = {
     'nvim-telescope/telescope.nvim',
     -- "ibhagwan/fzf-lua",
@@ -10,7 +10,8 @@ return {
   opts = {
     -- configuration goes here
     ---@type lc.lang
-    lang = 'c',
+    -- lang = 'c',
+    lang = 'cpp',
 
     vim.api.nvim_set_keymap('n', '<leader>le', ':Leet exit<CR>', { noremap = true, silent = true }),
     vim.api.nvim_set_keymap('n', '<leader>lm', ':Leet menu<CR>', { noremap = true, silent = true }),

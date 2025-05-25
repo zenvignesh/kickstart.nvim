@@ -204,9 +204,3 @@ vim.api.nvim_create_user_command('SumColumn', function()
   local sum_text = '-- Sum of column ' .. col .. " (delim: '" .. delim .. "'): " .. sum
   vim.api.nvim_buf_set_lines(0, insert_line, insert_line, false, { sum_text })
 end, { range = true })
-
--- Spelling
-vim.o.spell = true
-vim.o.spelllang = 'en_us' -- or any other language like 'en_gb', 'fr', etc.
-vim.o.completeopt = 'menuone,longest'
-vim.o.complete = vim.o.complete .. ',kspell'
