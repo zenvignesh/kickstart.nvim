@@ -204,3 +204,30 @@ vim.api.nvim_create_user_command('SumColumn', function()
   local sum_text = '-- Sum of column ' .. col .. " (delim: '" .. delim .. "'): " .. sum
   vim.api.nvim_buf_set_lines(0, insert_line, insert_line, false, { sum_text })
 end, { range = true })
+
+vim.keymap.set('v', '<leader>e', function()
+  vim.cmd 'normal! gv'
+  local start_pos = vim.fn.getpos "'<"
+  local end_pos = vim.fn.getpos "'>"
+  local start_row, start_col = start_pos[2] - 1, start_pos[3] - 1
+  local end_row, end_col = end_pos[2] - 1, end_pos[3]
+
+  -- Get the selected text
+  local lines = vim.api.nvim_buf_get_text(0, start_row, start_col, end_row, end_col, {})
+  local selected = table.concat(lines):gsub('%s+', '') -- trim whitespace
+
+  local minutes = tonumber(selected)
+
+  if minutes then
+    local hours = math.floor((minutes / 60) * 100) / 100
+    vim.api.nvim_buf_set_text(0, start_row, start_col, end_row, end_col, { tostring(hours) })
+    print(minutes .. ' minutes = ' .. hours .. ' hour(s)')
+  else
+    print 'Not a valid number!'
+  end
+
+  -- Restore cursor to start of inserted text
+  vim.api.nvim_win_set_cursor(0, { start_row + 1, start_col })
+
+  vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes('<Esc>', true, false, true), 'n', true)
+end, { desc = 'Convert minutes to hours (decimal)' })
