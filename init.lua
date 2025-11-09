@@ -159,7 +159,7 @@ vim.o.inccommand = 'split'
 vim.o.cursorline = true
 
 -- Minimal number of screen lines to keep above and below the cursor.
-vim.o.scrolloff = 10
+vim.o.scrolloff = 5
 
 -- if performing an operation that would fail due to unsaved changes in the buffer (like `:q`),
 -- instead raise a dialog asking if you wish to save the current file(s)
@@ -725,6 +725,7 @@ require('lazy').setup({
         'latexindent', -- Used to format latex file
         'isort', -- Used to format python file
         'black', -- Used to format python file
+        'autopep8', -- Used to format python file
       })
       require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 
@@ -783,7 +784,7 @@ require('lazy').setup({
         html = { 'prettier' },
         tex = { 'latexindent' },
         -- Conform can also run multiple formatters sequentially
-        python = { 'isort', 'black' },
+        python = { 'autopep8' },
         --
         -- You can use 'stop_after_first' to run the first available formatter from the list
         -- javascript = { "prettierd", "prettier", stop_after_first = true },
