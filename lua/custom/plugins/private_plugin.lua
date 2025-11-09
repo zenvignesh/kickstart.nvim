@@ -1,0 +1,1 @@
+/home/vignesh/dotfiles/lua/custom/plugins/private_plugin.lua

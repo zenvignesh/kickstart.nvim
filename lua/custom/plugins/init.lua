@@ -14,3 +14,5 @@ require 'custom.plugins.llm_plugin'
 require 'custom.plugins.git_plugin'
 
 require 'custom.plugins.util_plugin'
+
+require 'custom.plugins.private_plugin'
