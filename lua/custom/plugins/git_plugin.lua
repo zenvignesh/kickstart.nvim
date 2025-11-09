@@ -16,4 +16,4 @@ function OpenInGithub()
   os.execute('firefox ' .. github_url)
 end
 
-vim.api.nvim_set_keymap('n', '<leader>gs', ':lua OpenInGithub()<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>og', ':lua OpenInGithub()<CR>', { noremap = true, silent = true })
