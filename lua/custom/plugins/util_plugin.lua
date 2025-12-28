@@ -205,7 +205,7 @@ vim.api.nvim_create_user_command('SumColumn', function()
   vim.api.nvim_buf_set_lines(0, insert_line, insert_line, false, { sum_text })
 end, { range = true })
 
-vim.keymap.set('v', '<leader>e', function()
+vim.keymap.set('v', '<leader>c', function()
   vim.cmd 'normal! gv'
   local start_pos = vim.fn.getpos "'<"
   local end_pos = vim.fn.getpos "'>"
@@ -231,3 +231,10 @@ vim.keymap.set('v', '<leader>e', function()
 
   vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes('<Esc>', true, false, true), 'n', true)
 end, { desc = 'Convert minutes to hours (decimal)' })
+
+vim.keymap.set('v', '<leader>e', function()
+  vim.cmd 'normal! "vy'
+  local expr = vim.fn.getreg 'v'
+  local result = vim.fn.system('echo "' .. expr .. '" | bc -l')
+  vim.cmd('norma! gv"_c' .. expr .. ' = ' .. vim.trim(result))
+end, { desc = 'E(e)valuate the selected expression' })
