@@ -15,6 +15,7 @@
 vim.api.nvim_set_keymap('n', '<C-M-j>', ':bnext<CR>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<C-M-k>', ':bprev<CR>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<C-q>', ':bd<CR>', { noremap = true, silent = true })
+vim.keymap.set('i', 'jk', '<Esc>', { noremap = true, silent = true })
 
 -- Open Nvim Terminal
 vim.api.nvim_set_keymap('n', '<leader>T', ':term<CR>', { noremap = true, silent = true })
