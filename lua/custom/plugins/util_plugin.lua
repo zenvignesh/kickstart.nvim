@@ -239,3 +239,9 @@ vim.keymap.set('v', '<leader>e', function()
   local result = vim.fn.system('echo "' .. expr .. '" | bc -l')
   vim.cmd('norma! gv"_c' .. expr .. ' = ' .. vim.trim(result))
 end, { desc = 'E(e)valuate the selected expression' })
+
+-- Toggle line wrap with <leader>uw
+vim.keymap.set('n', '<leader>uw', function()
+  vim.wo.wrap = not vim.wo.wrap
+  vim.notify('Line wrap ' .. (vim.wo.wrap and 'enabled' or 'disabled'))
+end, { desc = 'UI Toggle line wrap' })
