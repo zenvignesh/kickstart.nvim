@@ -245,3 +245,10 @@ vim.keymap.set('n', '<leader>uw', function()
   vim.wo.wrap = not vim.wo.wrap
   vim.notify('Line wrap ' .. (vim.wo.wrap and 'enabled' or 'disabled'))
 end, { desc = 'UI Toggle line wrap' })
+
+-- Strip markdown anchors from paths before opening files with `gf`
+vim.keymap.set('n', 'gf', function()
+  local file = vim.fn.expand '<cfile>'
+  file = file:gsub('#.*$', '') -- remove markdown anchor
+  vim.cmd('edit' .. file)
+end)
