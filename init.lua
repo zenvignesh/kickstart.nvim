@@ -761,12 +761,12 @@ require('lazy').setup({
       },
     },
     opts = {
-      notify_on_error = false,
+      notify_on_error = true,
       format_on_save = function(bufnr)
         -- Disable "format_on_save lsp_fallback" for languages that don't
         -- have a well standardized coding style. You can add additional
         -- languages here or re-enable it for the disabled ones.
-        local disable_filetypes = { c = false, cpp = false }
+        local disable_filetypes = { c = false, cpp = false, sql = true }
         if disable_filetypes[vim.bo[bufnr].filetype] then
           return nil
         else
@@ -785,6 +785,7 @@ require('lazy').setup({
         tex = { 'latexindent' },
         -- Conform can also run multiple formatters sequentially
         python = { 'autopep8' },
+        sql = { 'sqlfluff' },
         --
         -- You can use 'stop_after_first' to run the first available formatter from the list
         -- javascript = { "prettierd", "prettier", stop_after_first = true },
@@ -792,6 +793,17 @@ require('lazy').setup({
       formatters = {
         clang_format = {
           prepend_args = { '--style=file:/home/vignesh/.config/nvim/lua/custom/config/.clang-format' },
+        },
+        sqlfluff = {
+          args = {
+            'fix',
+            '--config',
+            '/home/vignesh/.config/nvim/lua/custom/config/.sqlfluff',
+            '--disable-progress-bar',
+            '--nocolor',
+            '-',
+          },
+          require_cwd = false,
         },
       },
     },
