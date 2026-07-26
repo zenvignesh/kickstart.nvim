@@ -781,6 +781,7 @@ require('lazy').setup({
         c = { 'clang_format' },
         cpp = { 'clang_format' },
         markdown = { 'prettier' },
+        json = { 'prettier' },
         html = { 'prettier' },
         tex = { 'latexindent' },
         -- Conform can also run multiple formatters sequentially
