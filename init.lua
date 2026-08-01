@@ -727,6 +727,7 @@ require('lazy').setup({
         'isort', -- Used to format python file
         'black', -- Used to format python file
         'autopep8', -- Used to format python file
+        'taplo', -- Used to format TOML file
       })
       require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 
@@ -788,6 +789,7 @@ require('lazy').setup({
         -- Conform can also run multiple formatters sequentially
         python = { 'autopep8' },
         sql = { 'sqlfluff' },
+        toml = { 'taplo' },
         --
         -- You can use 'stop_after_first' to run the first available formatter from the list
         -- javascript = { "prettierd", "prettier", stop_after_first = true },
