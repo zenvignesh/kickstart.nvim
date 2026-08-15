@@ -252,3 +252,27 @@ vim.keymap.set('n', 'gf', function()
   file = file:gsub('#.*$', '') -- remove markdown anchor
   vim.cmd('edit' .. file)
 end)
+
+-- execute current file
+local function execute_current_file()
+  -- save the file before executing
+  vim.cmd 'write'
+
+  local filetype = vim.bo.filetype
+  local filepath = vim.fn.expand '%:p'
+  local cmd = ''
+
+  if filetype == 'lua' then
+    cmd = 'luafile %'
+  elseif filetype == 'python' then
+    cmd = '!python3 ' .. vim.fn.shellescape(filepath)
+  elseif filetype == 'sh' then
+    cmd = '!bash ' .. vim.fn.shellescape(filepath)
+  else
+    print('No execute command configured for filetype: ' .. filetype)
+    return
+  end
+  vim.cmd(cmd)
+end
+-- Keybinding: <Leader>e in Normal mode
+vim.keymap.set('n', '<leader>e', execute_current_file, { desc = 'Execute current file' })
