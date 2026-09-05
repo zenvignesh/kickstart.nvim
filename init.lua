@@ -733,17 +733,17 @@ do
   --  See `:help lsp-config` for information about keys and how to configure
   ---@type table<string, vim.lsp.Config>
   local servers = {
-    -- clangd = {},
+    clangd = {},
     -- gopls = {},
-    -- pyright = {},
+    pyright = {},
     -- tsc = {},
     --
     -- Some languages (like rust) have entire language plugins that can be useful:
     --    https://github.com/mrcjkb/rustaceanvim
     --
     -- But for many setups, the LSP (`rust_analyzer`) will work just fine
-    -- rust_analyzer = {},
-
+    rust_analyzer = {},
+    markdown_oxide = {},
     stylua = {}, -- Used to format Lua code
 
     -- Special Lua Config, as recommended by neovim help docs
@@ -840,12 +840,39 @@ do
     },
     -- You can also specify external formatters in here.
     formatters_by_ft = {
-      -- rust = { 'rustfmt' },
+        lua = { 'stylua' },
+        c = { 'clang_format' },
+        cpp = { 'clang_format' },
+        markdown = { 'prettier' },
+        json = { 'prettier' },
+        html = { 'prettier' },
+        tex = { 'latexindent' },
+        -- Conform can also run multiple formatters sequentially
+        python = { 'autopep8' },
+        sql = { 'sqlfluff' },
+        toml = { 'taplo' },
+      rust = { 'rustfmt' },
       -- Conform can also run multiple formatters sequentially
       -- python = { "isort", "black" },
       --
       -- You can use 'stop_after_first' to run the first available formatter from the list
       -- javascript = { "prettierd", "prettier", stop_after_first = true },
+    },
+    formatters = {
+      clang_format = {
+        prepend_args = { '--style=file:/home/vignesh/.config/nvim/lua/custom/config/.clang-format' },
+      },
+      sqlfluff = {
+        args = {
+          'fix',
+          '--config',
+          '/home/vignesh/.config/nvim/lua/custom/config/.sqlfluff',
+          '--disable-progress-bar',
+          '--nocolor',
+          '-',
+        },
+        require_cwd = false,
+      },
     },
   }
 
@@ -1010,11 +1037,17 @@ do
   --  Here are some example plugins that I've included in the Kickstart repository.
   --  Uncomment any of the lines below to enable them (you will need to restart nvim).
   --
-  -- require 'kickstart.plugins.debug'
-  -- require 'kickstart.plugins.indent_line'
-  -- require 'kickstart.plugins.lint'
-  -- require 'kickstart.plugins.autopairs'
-  -- require 'kickstart.plugins.neo-tree'
+  -- require 'kickstart.plugins.debug',
+  require 'kickstart.plugins.indent_line'
+  -- require 'kickstart.plugins.lint',
+  require 'kickstart.plugins.autopairs'
+  require 'kickstart.plugins.neo-tree'
+  require 'kickstart.plugins.gitsigns' -- adds gitsigns recommend keymaps
+  require 'kickstart.plugins.w3m-vim'
+  require 'kickstart.plugins.dadbod'
+  require 'kickstart.plugins.leetcode'
+  require 'kickstart.plugins.puml-plugin'
+  require 'kickstart.plugins.sqls'
 
   -- NOTE: You can add your own plugins, configuration, etc. in `lua/custom/plugins/*.lua`.
   --
@@ -1029,6 +1062,7 @@ do
   -- require 'custom.plugins.colorscheme'
   -- require 'custom.plugins.ui'
   -- require 'custom.plugins.git'
+  require 'custom.plugins.init'
 end
 
 -- The line beneath this is called `modeline`. See `:help modeline`
